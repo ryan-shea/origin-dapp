@@ -11,7 +11,7 @@ import { init as initWallet } from 'actions/Wallet'
 import Alert from './alert'
 import ScrollToTop from './scroll-to-top'
 import Layout from './layout'
-import Listings from './listings-grid'
+import HomePage from './home'
 import ListingCreate from './listing-create'
 import ListingDetail from './listing-detail'
 import MyListings from './my-listings'
@@ -30,12 +30,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '../css/lato-web.css'
 import '../css/poppins.css'
 import '../css/app.css'
-
-const HomePage = () => (
-  <div className="container">
-    <Listings />
-  </div>
-)
 
 const ListingDetailPage = props => (
   <ListingDetail listingAddress={props.match.params.listingAddress} withReviews={true} />
