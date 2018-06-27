@@ -8,8 +8,8 @@ export const AlertConstants = keyMirror(
   'ALERT'
 )
 
-export function showAlert(message) {
-  return { type: AlertConstants.SHOW, message }
+export function showAlert(message, sticky = false) {
+  return { type: AlertConstants.SHOW, message, sticky }
 }
 
 export function hideAlert() {

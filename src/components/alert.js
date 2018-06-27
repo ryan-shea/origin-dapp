@@ -25,7 +25,10 @@ class Alert extends Component {
     this.showTimeout = setTimeout(() => {
       this.setState({ className: ' origin-alert-show' })
     }, 10)
-    this.hideTimeout = setTimeout(() => this.hide(), 2000)
+
+    if (!this.props.sticky) {
+      this.hideTimeout = setTimeout(() => this.hide(), 2000)
+    }
   }
 
   hide() {
@@ -50,7 +53,8 @@ class Alert extends Component {
 
 const mapStateToProps = state => ({
   message: state.alert.message,
-  show: state.alert.show
+  show: state.alert.show,
+  sticky: state.alert.sticky
 })
 
 const mapDispatchToProps = dispatch => ({
