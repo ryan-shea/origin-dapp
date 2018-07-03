@@ -12,7 +12,6 @@ class MyListings extends Component {
     super(props)
 
     this.handleUpdate = this.handleUpdate.bind(this)
-    this.loadListing = this.loadListing.bind(this)
     this.state = {
       filter: 'all',
       listings: [],
@@ -26,44 +25,21 @@ class MyListings extends Component {
     }
   }
 
-  /*
-  * WARNING: These functions don't actually return what they might imply.
-  * They use return statements to chain together async calls. Oops.
-  *
-  * For now, we mock a getBySellerAddress request by fetching all
-  * listings individually, filtering each by sellerAddress.
-  */
-
-  async getListingIds() {
+  async getListings() {
     try {
-      const ids = await origin.listings.allIds()
-
-      return await Promise.all(ids.map(this.loadListing))
+      return await origin.listings.all({ noIndex: true })
     } catch(error) {
-      console.error('Error fetching listing ids')
-    }
-  }
-
-  async loadListing(id) {
-    try {
-      const listing = await origin.listings.getByIndex(id)
-
-      if (listing.sellerAddress === this.props.web3Account) {
-        const listings = [...this.state.listings, listing]
-
-        this.setState({ listings })
-      }
-
-      return listing
-    } catch(error) {
-      console.error(`Error fetching contract or IPFS info for listingId: ${id}`)
+      console.error('Error fetching listings')
     }
   }
 
   async componentWillMount() {
-    await this.getListingIds()
+    const listings = await this.getListings()
 
-    this.setState({ loading: false })
+    this.setState({
+      listings: listings.filter(l => l.sellerAddress === this.props.web3Account),
+      loading: false,
+    })
   }
 
   async handleUpdate(address) {
