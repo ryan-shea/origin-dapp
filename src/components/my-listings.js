@@ -27,7 +27,7 @@ class MyListings extends Component {
 
   async getListings() {
     try {
-      return await origin.listings.all({ noIndex: true })
+      return await origin.listings.all()
     } catch(error) {
       console.error('Error fetching listings')
     }
