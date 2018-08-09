@@ -33,6 +33,11 @@ var config = {
         loader: 'babel-loader'
       },
       {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto",
+      },
+      {
         test: /\.css$/,
         use: isProduction
           ? ExtractTextPlugin.extract({
