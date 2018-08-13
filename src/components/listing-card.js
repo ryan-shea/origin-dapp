@@ -31,6 +31,7 @@ class ListingCard extends Component {
       }
     } catch (error) {
       console.error(`Error fetching contract or IPFS info for listingId: ${this.props.listingId}`)
+      console.error(error)
     }
   }
 
