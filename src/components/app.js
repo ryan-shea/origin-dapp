@@ -14,7 +14,7 @@ import Alert from 'components/alert'
 import Layout from 'components/layout'
 import ListingCreate from 'components/listing-create'
 import ListingDetail from 'components/listing-detail'
-import Listings from 'components/listings-grid'
+import ListingsGrid from 'components/listings-grid'
 import Messages from 'components/messages'
 import MyListings from 'components/my-listings'
 import MyPurchases from 'components/my-purchases'
@@ -42,7 +42,7 @@ const ONE_SECOND = 1000
 
 const HomePage = () => (
   <div className="container">
-    <Listings />
+    <ListingsGrid />
   </div>
 )
 
