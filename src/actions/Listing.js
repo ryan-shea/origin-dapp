@@ -42,11 +42,10 @@ async function fetchListingIds(dispatch, fetcher) {
     }
 
     const ids = await fetcher()
-    const showIds = ids ? ids.filter(i => hideList.indexOf(i) < 0) : []
-    console.log("Listings found: ", ids, showIds)
+
     dispatch({
       type: ListingConstants.FETCH_IDS_SUCCESS,
-      ids: showIds.reverse(),
+      ids,
       hideList
     })
   } catch (error) {
@@ -67,7 +66,7 @@ export function searchListings(rawQuery) {
 
 export function getListingIds() {
   return async function(dispatch) {
-    const fetcher = () => { return origin.listings.allIds() }
+    const fetcher = () => { return origin.marketplace.getListings({ idsOnly: true }) }
     await fetchListingIds(dispatch, fetcher)
   }
 }
