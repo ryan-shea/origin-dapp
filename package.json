@@ -34,7 +34,8 @@
     "serve": "^6.5.6",
     "store": "^2.0.12",
     "web3": "^1.0.0-beta.34",
-    "orbit-db": "^0.19.8"
+    "orbit-db": "^0.19.8",
+    "query-string": "6.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.46",
